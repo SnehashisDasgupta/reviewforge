@@ -1,0 +1,19 @@
+spring:
+  config:
+    import: optional:classpath:application-secret.yaml
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/reviewforge
+    username: ${db.username}
+    password: ${db.password}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true

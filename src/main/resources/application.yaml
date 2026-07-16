@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: reviewforge
+  profiles:
+    active: dev
