@@ -1,229 +1,244 @@
-# 📚 ReviewForge Documentation
+# ReviewForge Documentation
 
-Welcome to the **ReviewForge Engineering Documentation**.
+Welcome to the official engineering documentation for **ReviewForge**.
 
-This directory contains all the technical and product documentation for ReviewForge, an AI-powered software engineering platform designed to help developers understand, review, improve, and maintain software systems throughout their lifecycle.
+This documentation captures the design decisions, architecture, API contracts, database models, and development roadmap for the project.
 
-The documentation is organized in the same way a real software product is documented inside engineering organizations. Whether you're a developer, reviewer, interviewer, or contributor, these documents will help you understand the product before diving into the code.
-
----
-
-# 📖 Why This Documentation Exists
-
-Software is more than just code.
-
-A production-grade application also requires clear documentation that explains:
-
-- Why the product exists
-- What problems it solves
-- How the system is designed
-- Why architectural decisions were made
-- How developers should contribute
-- How the system evolves over time
-
-Maintaining documentation from the beginning helps keep development organized, improves onboarding, and makes future maintenance significantly easier.
+The goal is to document **not only what is built, but also why it is built that way**.
 
 ---
 
-# 📂 Documentation Structure
+# About ReviewForge
+
+ReviewForge is a production-grade AI-powered software engineering platform.
+
+It helps developers:
+
+- Manage software repositories
+- Collaborate with team members
+- Upload and organize source code
+- Generate AI-assisted code reviews
+- Generate technical documentation
+- Understand large codebases
+- Improve software quality
+
+The project is being developed incrementally, starting as a modular monolith and evolving into a distributed AI platform.
+
+---
+
+# Documentation Structure
 
 ```text
 docs/
+├── README.md
+├── roadmap.md
 │
-├── README.md                 # Documentation index
+├── product/
+│   ├── product-requirements.md
+│   ├── domain-glossary.md
+│   ├── user-stories.md
+│   ├── functional-requirements.md
+│   ├── non-functional-requirements.md
+│   └── assumptions-and-release-scope.md
 │
-├── product/                  # Product documentation
+├── architecture/
+│   ├── domain-model.md
+│   ├── entity-relationship.md
+│   ├── permission-model.md
+│   ├── naming-conventions.md
+│   ├── package-structure.md
+│   ├── coding-guidelines.md
+│   ├── exception-handling.md
+│   ├── future-architecture.md
+│   ├── migration-strategy.md
+│   └── scalability-roadmap.md
 │
-├── architecture/             # System architecture
+├── database/
+│   ├── database-schema.md
+│   ├── tables.md
+│   ├── constraints.md
+│   ├── indexes.md
+│   ├── naming-conventions.md
+│   └── audit-and-versioning.md
 │
-├── database/                 # Database design
+├── api/
+│   ├── api-design-principles.md
+│   ├── api-response-format.md
+│   ├── api-versioning.md
+│   ├── authentication-api.md
+│   ├── repository-api.md
+│   ├── repository-members-api.md
+│   ├── file-management-api.md
+│   ├── review-api.md
+│   └── documentation-api.md
 │
-├── api/                      # REST API documentation
-│
-├── adr/                      # Architecture Decision Records
-│
-├── ai/                       # AI-related documentation
-│
-└── roadmap.md                # Project roadmap
+└── adr/
+    ├── ADR-001-modular-monolith.md
+    ├── ADR-002-uuid-primary-keys.md
+    ├── ADR-003-postgresql.md
+    ├── ADR-004-flyway.md
+    ├── ADR-005-jwt-authentication.md
+    ├── ADR-006-feature-based-packaging.md
+    ├── ADR-007-local-file-storage.md
+    ├── ADR-008-local-ai-models.md
+    ├── ADR-009-mapstruct.md
+    └── ADR-010-hard-delete-v1.md
 ```
 
 ---
 
-# 📑 Product Documentation
+# Recommended Reading Order
 
-The **product** folder explains what ReviewForge is, who it is for, and what the system is expected to do.
+If you're new to the project, read the documents in the following order:
 
-| Document | Description |
-|----------|-------------|
-| `product-requirements.md` | Product vision, goals, scope, target users, and business requirements |
-| `domain-glossary.md` | Definitions of important business and technical terms |
-| `user-stories.md` | User goals written from the perspective of different user roles |
-| `use-cases.md` | Step-by-step interactions between users and the system |
-| `functional-requirements.md` | Functional capabilities the system must provide |
-| `non-functional-requirements.md` | Quality attributes such as security, performance, and scalability |
-| `assumptions-and-constraints.md` | Project assumptions, limitations, and design boundaries |
-| `release-plan.md` | Planned evolution of ReviewForge across development phases |
+## 1. Product
+
+Start here to understand the business problem and product goals.
+
+1. Product Requirements
+2. Domain Glossary
+3. User Stories
+4. Functional Requirements
+5. Non-Functional Requirements
+6. Assumptions & Release Scope
 
 ---
 
-# 🏛 Architecture Documentation
+## 2. Architecture
 
-The **architecture** folder explains how the system is designed from a high-level perspective.
+Learn how the system is modeled and structured.
+
+1. Domain Model
+2. Entity Relationship
+3. Permission Model
+4. Naming Conventions
+5. Package Structure
+6. Coding Guidelines
+7. Exception Handling
+8. Future Architecture
+9. Migration Strategy
+10. Scalability Roadmap
+
+---
+
+## 3. Database
+
+Understand how data is stored and managed.
+
+1. Database Schema
+2. Tables
+3. Constraints
+4. Indexes
+5. Naming Conventions
+6. Audit & Versioning
+
+---
+
+## 4. API
+
+Review the REST API contracts before implementation.
+
+1. API Design Principles
+2. Response Format
+3. Versioning
+4. Authentication API
+5. Repository API
+6. Repository Members API
+7. File Management API
+8. Review API
+9. Documentation API
+
+---
+
+## 5. Architecture Decision Records (ADR)
+
+Each ADR explains the reasoning behind important technical decisions.
 
 Examples include:
 
-- System Architecture
-- Modular Monolith Design
-- Component Responsibilities
-- Deployment Architecture
-- Sequence Diagrams
-- Future Microservice Migration Strategy
-
----
-
-# 🗄 Database Documentation
-
-The **database** folder documents the persistence layer.
-
-Topics include:
-
-- Entity Relationship Diagram (ERD)
-- Database Schema
-- Tables
-- Relationships
-- Constraints
-- Indexes
-- Migration Strategy
-- Data Modeling Decisions
-
----
-
-# 🌐 API Documentation
-
-The **api** folder documents all public REST APIs.
-
-Documentation includes:
-
-- Endpoints
-- Request Objects
-- Response Objects
-- Validation Rules
-- Authentication Requirements
-- Error Responses
-- Status Codes
-
-Swagger/OpenAPI documentation will complement these documents.
-
----
-
-# 📝 Architecture Decision Records (ADR)
-
-Every important architectural decision should be documented.
-
-Examples include:
-
+- Why a modular monolith?
 - Why PostgreSQL?
+- Why UUID?
 - Why Flyway?
-- Why JWT Authentication?
-- Why a Modular Monolith?
-- Why Feature-Based Packaging?
-- Why FastAPI for AI Services?
-- Why Local AI Models during Development?
-
-Each ADR explains:
-
-- The problem
-- Available options
-- Decision made
-- Trade-offs
-- Consequences
+- Why JWT?
+- Why feature-based packaging?
 
 ---
 
-# 🤖 AI Documentation
+# Development Workflow
 
-The **ai** folder focuses on ReviewForge's AI capabilities.
-
-Planned topics include:
-
-- AI Review Pipeline
-- Prompt Engineering
-- Embedding Strategy
-- Retrieval-Augmented Generation (RAG)
-- Vector Database Design
-- AI Model Selection
-- Multi-Agent Architecture
-- AI Performance Optimization
-
----
-
-# 🗺 Project Roadmap
-
-The roadmap outlines the long-term vision for ReviewForge.
-
-Development progresses through multiple phases:
+Every feature in ReviewForge follows the same lifecycle:
 
 ```text
-Phase 0 → Planning & Architecture
-        ↓
-Phase 1 → Production-Ready Modular Monolith
-        ↓
-Phase 2 → AI Integration
-        ↓
-Phase 3 → Performance & Scalability
-        ↓
-Phase 4 → Microservices
-        ↓
-Phase 5 → Advanced AI
-        ↓
-Phase 6 → DevOps & Cloud
+Business Requirement
+        │
+        ▼
+Product Requirement
+        │
+        ▼
+Domain Design
+        │
+        ▼
+Database Design
+        │
+        ▼
+API Design
+        │
+        ▼
+Implementation
+        │
+        ▼
+Testing
+        │
+        ▼
+Documentation
+        │
+        ▼
+Release
 ```
 
-Each phase delivers a stable, production-quality application while preparing the foundation for future capabilities.
+This ensures that design decisions are made before implementation, resulting in a maintainable and scalable codebase.
 
 ---
 
-# 📚 Documentation Principles
+# Project Principles
 
-The ReviewForge documentation follows these principles:
+The project follows these engineering principles:
 
-- **Documentation First** – Design before implementation.
-- **Production Mindset** – Write documentation as if the project were maintained by a professional engineering team.
-- **Traceability** – Every feature should be traceable from business requirements to implementation.
-- **Maintainability** – Documentation should evolve alongside the codebase.
-- **Clarity** – Documents should be understandable by both new contributors and experienced engineers.
-
----
-
-# 🤝 Contributing
-
-When adding a new feature:
-
-1. Update the relevant product documentation if requirements change.
-2. Record significant architectural decisions in the `adr/` folder.
-3. Update API documentation for any new or modified endpoints.
-4. Update database documentation if the schema changes.
-5. Ensure the roadmap reflects major milestones.
-6. Keep documentation synchronized with the implementation.
+- Business-first design
+- Clean Architecture
+- SOLID principles
+- Feature-based packaging
+- API-first development
+- Database-first thinking
+- Security by default
+- Incremental evolution
+- Production-ready code
+- Documentation-driven development
 
 ---
 
-# 🚀 Current Status
+# Project Status
 
-| Area | Status |
-|------|--------|
-| Product Documentation | ✅ In Progress |
-| Architecture Design | ⏳ Planned |
-| Database Design | ⏳ Planned |
-| API Design | ⏳ Planned |
-| AI Documentation | ⏳ Planned |
-| ADRs | ✅ Started |
-| Roadmap | ⏳ Planned |
+| Phase | Status |
+|--------|--------|
+| Phase 0.1 – Project Foundation | ✅ Completed |
+| Phase 0.2 – System Design | ✅ Completed |
+| Phase 1 – Core Backend Development | 🚧 Next |
 
 ---
 
-# 📌 Final Note
+# Contributing
 
-The goal of this documentation is not only to explain how ReviewForge works but also to demonstrate the engineering process behind building a production-grade software platform.
+All contributors should:
 
-As the project grows, this documentation will evolve alongside the codebase, serving as a reliable source of truth for developers, contributors, and future maintainers.
+- Follow the documented architecture.
+- Adhere to coding guidelines and naming conventions.
+- Update documentation when introducing new features or architectural decisions.
+- Create a new ADR for significant technical decisions.
+
+---
+
+# License
+
+This project is currently developed for educational, portfolio, and learning purposes. Licensing may be updated in future releases.

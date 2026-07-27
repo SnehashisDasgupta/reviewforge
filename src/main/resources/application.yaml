@@ -3,3 +3,12 @@ spring:
     name: reviewforge
   profiles:
     active: dev
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+  swagger-ui:
+    path: /swagger-ui
+    operations-sorter: method
+    tags-sorter: alpha
