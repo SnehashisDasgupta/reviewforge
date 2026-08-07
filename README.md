@@ -12,7 +12,7 @@ A production-grade AI-powered code review platform built with:
 ## Roadmap
 
 - [x] Project setup
-- [ ] Authentication
+- [x] Authentication
 - [ ] Repository management
 - [ ] File management
 - [ ] AI code review
