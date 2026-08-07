@@ -17,3 +17,9 @@ spring:
 
   flyway:
     enabled: true
+
+
+security:
+  jwt:
+    secret: ${token-key.secret}
+    expiration: ${token-key.expiration}

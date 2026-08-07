@@ -2,6 +2,7 @@ package com.snehashis.reviewforge.common.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -15,6 +16,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex){
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(ErrorResponseFactory.createErrorResponse(ex.getMessage()));
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleBadCredentials(BadCredentialsException ex){
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(ErrorResponseFactory.createErrorResponse(ex.getMessage()));
     }
 
@@ -64,6 +72,9 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception ex){
+
+        ex.printStackTrace(); // temporary
+
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ErrorResponseFactory.createErrorResponse("An unexpected error occurred."));
     }

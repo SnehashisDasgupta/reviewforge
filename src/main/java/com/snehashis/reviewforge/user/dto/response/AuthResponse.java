@@ -1,12 +1,12 @@
 package com.snehashis.reviewforge.user.dto.response;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @Builder
 public class AuthResponse {
 
-    private String accessToken;
-    private String tokenType;
+    private final String accessToken;
+    private final String tokenType;
 }
