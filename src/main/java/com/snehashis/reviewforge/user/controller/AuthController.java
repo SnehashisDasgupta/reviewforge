@@ -7,6 +7,7 @@ import com.snehashis.reviewforge.user.dto.request.RegisterRequest;
 import com.snehashis.reviewforge.user.dto.response.AuthResponse;
 import com.snehashis.reviewforge.user.dto.response.UserResponse;
 import com.snehashis.reviewforge.user.service.AuthService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ public class AuthController {
 
     private final AuthService authService;
 
+    @Operation(summary = "Register User")
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserResponse>> register(@Valid @RequestBody RegisterRequest request){
 
@@ -39,6 +41,7 @@ public class AuthController {
                 );
     }
 
+    @Operation(summary = "Login User")
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest request){
 

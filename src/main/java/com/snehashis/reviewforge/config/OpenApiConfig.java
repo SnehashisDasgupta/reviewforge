@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    private static final String SECURITY_SCHEME = "Bearer Authentication";
+    private static final String SECURITY_SCHEME = "bearerAuth";
 
     @Bean
     public OpenAPI reviewForgeOpenAPI() {

@@ -3,6 +3,7 @@ package com.snehashis.reviewforge.user.controller;
 import com.snehashis.reviewforge.common.response.ApiResponse;
 import com.snehashis.reviewforge.user.dto.response.UserResponse;
 import com.snehashis.reviewforge.user.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class UserController {
 
     private final UserService userService;
 
+    @Operation(summary = "Get Current User")
     @GetMapping("/me")
     public ApiResponse<UserResponse> getCurrentUser() {
 
