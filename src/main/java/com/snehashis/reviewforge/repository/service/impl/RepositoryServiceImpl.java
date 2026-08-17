@@ -2,6 +2,7 @@ package com.snehashis.reviewforge.repository.service.impl;
 
 import com.snehashis.reviewforge.common.exception.ForbiddenException;
 import com.snehashis.reviewforge.common.exception.ResourceNotFoundException;
+import com.snehashis.reviewforge.common.security.CurrentUserService;
 import com.snehashis.reviewforge.repository.dto.request.CreateRepositoryRequest;
 import com.snehashis.reviewforge.repository.dto.request.UpdateRepositoryRequest;
 import com.snehashis.reviewforge.repository.dto.response.RepositoryResponse;
@@ -11,8 +12,6 @@ import com.snehashis.reviewforge.repository.service.RepositoryService;
 import com.snehashis.reviewforge.user.entity.User;
 import com.snehashis.reviewforge.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,16 +23,12 @@ public class RepositoryServiceImpl implements RepositoryService {
 
     private final CodeRepositoryRepository codeRepositoryRepository;
     private final UserService userService;
+    private final CurrentUserService currentUserService;
 
     @Override
     public RepositoryResponse createRepository(CreateRepositoryRequest request) {
 
-        Authentication authentication = SecurityContextHolder
-                .getContext()
-                .getAuthentication();
-
-        String email = authentication.getName();
-        User owner = userService.findByEmail(email);
+        User owner = currentUserService.getCurrentUser();
 
         CodeRepository repository = new CodeRepository(
                 request.getName(),
@@ -58,13 +53,8 @@ public class RepositoryServiceImpl implements RepositoryService {
 
     @Override
     public List<RepositoryResponse> getMyRepositories() {
-        Authentication authentication = SecurityContextHolder
-                .getContext()
-                .getAuthentication();
 
-        String email = authentication.getName();
-
-        User owner = userService.findByEmail(email);
+        User owner = currentUserService.getCurrentUser();
 
         return codeRepositoryRepository.findByOwnerId(owner.getId())
                 .stream()
@@ -83,13 +73,7 @@ public class RepositoryServiceImpl implements RepositoryService {
 
     @Override
     public RepositoryResponse getRepositoryById(UUID repoId) {
-        Authentication authentication = SecurityContextHolder
-                .getContext()
-                .getAuthentication();
-
-        String email = authentication.getName();
-
-        User currentUser = userService.findByEmail(email);
+        User currentUser = currentUserService.getCurrentUser();
 
         CodeRepository repository = codeRepositoryRepository
                 .findById(repoId)
@@ -119,13 +103,7 @@ public class RepositoryServiceImpl implements RepositoryService {
     @Override
     public RepositoryResponse updateRepository(UUID repoId, UpdateRepositoryRequest request) {
 
-        Authentication authentication = SecurityContextHolder
-                .getContext()
-                .getAuthentication();
-
-        String email = authentication.getName();
-
-        User currentUser = userService.findByEmail(email);
+        User currentUser = currentUserService.getCurrentUser();
 
         CodeRepository repository = codeRepositoryRepository
                 .findById(repoId)
@@ -164,13 +142,7 @@ public class RepositoryServiceImpl implements RepositoryService {
     @Override
     public void deleteRepository(UUID repoId) {
 
-        Authentication authentication = SecurityContextHolder
-                .getContext()
-                .getAuthentication();
-
-        String email = authentication.getName();
-
-        User currentUser = userService.findByEmail(email);
+        User currentUser = currentUserService.getCurrentUser();
 
         CodeRepository repository = codeRepositoryRepository
                 .findById(repoId)
